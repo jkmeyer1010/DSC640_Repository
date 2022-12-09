@@ -1,0 +1,122 @@
+---
+title: "DSC640_Exercise_1-2_JakeMeyer"
+course: "DSC 640 Data Presentation & Visualization (DSC640-T302 2231-1)"
+college: "Bellevue University"
+author: "Jake Meyer"
+date: "2022-12-06"
+output: pdf_document
+always_allow_html: yes
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE, 
+                      root.dir = "C:/Users/jkmey/Documents/Github/DSC640_Course_Assignments/DSC640_Repository" )
+```
+
+## Assignment Instructions
+Submit 1 bar chart, 1 stacked bar chart, 1 pie chart, and 1 donut chart with R.
+
+### Show Working directory
+```{r, warning = FALSE}
+getwd()
+dir()
+ # setwd("C:/Users/jkmey/Documents/Github/DSC640_Course_Assignments/DSC640_Repository")
+```
+
+### Import the necessary libraries
+```{r, warning = FALSE}
+library(readxl)
+library(ggplot2)
+library(tidyverse)
+library(dplyr)
+library(plotly)
+theme_set(theme_minimal())
+```
+
+### Import the data
+```{r}
+df1 <- read_excel("hotdog-contest-winners.xlsm")
+df2 <- read_excel("hotdog-places.xlsm")
+df3 <- read_excel("obama-approval-ratings.xls")
+```
+
+### Revise data for Bar Charts
+```{r}
+df_dogs_eaten <- aggregate(df1$`Dogs eaten`, list(df1$Country), FUN = sum)
+colnames(df_dogs_eaten) <- c('Country', 'DogsEaten')
+df_dogs_eaten$Country <- factor(df_dogs_eaten$Country,
+                                levels = df_dogs_eaten$Country[order(df_dogs_eaten$DogsEaten, decreasing = TRUE)])
+```
+
+### Bar Chart
+```{r}
+ggplot(df_dogs_eaten, aes(x = Country, y = DogsEaten, fill = Country, color = Country)) + 
+  geom_bar(stat ='identity') + xlab('Country') + ylab('Count') + 
+  ggtitle('Number of Hot Dogs Eaten by Country')
+```
+
+### Store data as specific variables
+```{r}
+x = df1$Country
+y = df1$`Dogs eaten`
+df1$`New record`=as.factor(df1$`New record`)
+group = df1$`New record`
+```
+
+### Stacked Bar Chart for Hot Dog Eating
+```{r}
+ggplot(df1, aes(x = group, y = y, fill = x)) + 
+  geom_bar(position = 'stack', stat='identity') + 
+  xlab('New Record (0-No, 1-Yes)') + ylab('Number of Hot Dogs Eaten') + 
+  ggtitle('Number of Hot Dogs Eaten by Country (New Record Breakdown)') +
+  guides(fill = guide_legend(title = "Country")) 
+```
+
+### Stacked Bar Chart for Obama Approval Ratings Using Plotly
+```{r}
+fig <- plot_ly(df3, x = ~Issue, y = ~Approve, type = 'bar', name = 'Approve')
+fig <- fig %>% add_trace(y = ~Disapprove, name = 'Disapprove')
+fig <- fig %>% add_trace(y = ~None, name = 'None')
+fig <- fig %>% layout(xaxis = list(cateogoryorder= "total descending"))
+fig <- fig %>% layout(yaxis = list(title = 'Approval Percentage'), barmode = 'stack')
+fig <- fig %>% layout(title = 'Obama Approval Ratings on Issues')
+fig
+```
+
+### Revise data variables for Pie and Donut Charts
+```{r}
+percent_table <- table(c(df1$Country))
+x_percent <- percent_table / length(df1$Country)
+countries <- unique(df1$Country)
+df_percent <- data.frame(x_percent)
+colnames(df_percent) <- c('Countries', 'Percent')
+y_new = df_percent$Percent
+x_new = df_percent$Countries
+```
+
+### Pie Chart
+```{r}
+ggplot(df_percent, aes(x = "", y = y_new, fill = x_new)) + geom_col() + 
+  coord_polar(theta = "y", start = 1) + 
+  ggtitle('Percentage of Hot Dog Eating Champions by Country') +
+  geom_text(aes(label = paste0(round(y_new*100), "%")),
+             position = position_stack(vjust = 0.5)) +
+  guides(fill = guide_legend(title = "Country"))
+```
+### Donut Chart
+```{r}
+ggplot(df_percent, aes(x=2, y=y_new, fill = x_new)) + geom_col() + 
+  coord_polar("y", start = 1) + 
+  geom_text(aes(label = paste0(round(y_new*100), "%")),
+            position = position_stack(vjust = 0.5)) +
+  theme(panel.background = element_blank(), 
+        axis.line = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title = element_blank(),
+        plot.title = element_text(hjust = 0.5, size =18)) + 
+  ggtitle("Percentage of Hot Dog Eating Champions by Country") + xlim(0.5, 2.5) +
+  guides(fill = guide_legend(title = "Country"))
+```
+
