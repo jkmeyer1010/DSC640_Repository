@@ -1,0 +1,87 @@
+---
+title: "DSC640_Exercise_4-2_JakeMeyer"
+course: "DSC 640 Data Presentation & Visualization (DSC640-T302 2231-1)"
+college: "Bellevue University"
+author: "Jake Meyer"
+date: "2023-01-28"
+output: pdf_document
+always_allow_html: yes
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE, 
+                      root.dir = "C:/Users/jkmey/Documents/Github/DSC640_Course_Assignments/DSC640_Repository" )
+```
+
+## Assignment Instructions
+Submit 1 scatterplot, 1 bubble chart, and 1 density plot with R.
+
+### Show Working directory
+```{r, warning = FALSE}
+getwd()
+dir()
+ # setwd("C:/Users/jkmey/Documents/Github/DSC640_Course_Assignments/DSC640_Repository")
+```
+
+### Import the necessary libraries
+```{r, warning = FALSE}
+library(readxl)
+library(ggplot2)
+library(tidyverse)
+library(dplyr)
+library(scales)
+library(plotly)
+theme_set(theme_minimal())
+```
+
+### Import the data
+```{r}
+df1 <- read.csv("crimerates-by-state-2005.csv", header = TRUE, sep = ",")
+```
+
+### Scatterplot using crime rate data by state from 2005.
+```{r}
+df2 <- df1[df1$state != 'District of Columbia',]
+df2 <- df2[df2$state != 'United States',]
+```
+```{r}
+scatter.smooth(df2$murder, df2$burglary, xlim = c(0,10), 
+               ylim = c(0, 1400), xlab = 'Murder Rate (per 100,000 population)',
+               ylab = 'Burglary Rate (per 100,000 population)',
+               main = 'Burglary Rate vs. Murder Rate in U.S.')
+```
+
+### Bubble Chart using crime rate data by state from 2005.
+```{r}
+radius <- sqrt(df2$population / pi)
+symbols(df2$murder, df2$burglary, circles = radius,inches = 0.35,
+        fg="white", bg="red", xlab = "Murder Rate (per 100,000 population)",
+        ylab = "Burglary Rate (per 100,000 population)",
+        main = 'Burglary Rate vs. Murder Rate in U.S. by State Population (2005)')
+text(df2$murder, df2$burglary, df2$state, cex = 0.5)
+```
+
+### Density Plot using birth rate data from 2008.
+```{r}
+df3 <- read.csv("birth-rate.csv", header = TRUE, sep = ",")
+```
+Eliminate the missing values.
+```{r}
+birth2008 <- df3$X2008[!is.na(df3$X2008)]
+```
+Create the density data for the birth rates from 2008.
+```{r}
+d2008 <- density(birth2008)
+```
+Store the x and y density data in a dataframe. Write to a .txt file.
+```{r}
+d2008frame <- data.frame(d2008$x, d2008$y)
+write.table(d2008frame, 'birthdensity.txt', sep = ',' , row.names = FALSE)
+```
+Generate the Density Plot.
+```{r}
+plot(d2008, type = 'n', xlab = "Birth Rate", ylab = "Density",
+     main = "Density Plot of Birth Rates (2008)")
+polygon(d2008, col = '#821122', border = "#cccccc")
+```
