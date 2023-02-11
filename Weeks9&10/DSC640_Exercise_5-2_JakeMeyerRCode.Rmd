@@ -1,0 +1,93 @@
+---
+title: "DSC640_Exercise_5-2_JakeMeyer"
+course: "DSC 640 Data Presentation & Visualization (DSC640-T302 2231-1)"
+college: "Bellevue University"
+author: "Jake Meyer"
+date: "2023-02-10"
+output: pdf_document
+always_allow_html: yes
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE, 
+                      root.dir = "C:/Users/jkmey/Documents/Github/DSC640_Course_Assignments/DSC640_Repository" )
+```
+
+## Assignment Instructions
+Submit 1 heat map, 1 spatial chart, and 1 contour chart with R.
+
+### Show Working directory
+```{r, warning = FALSE}
+getwd()
+dir()
+ # setwd("C:/Users/jkmey/Documents/Github/DSC640_Course_Assignments/DSC640_Repository")
+```
+
+### Import the necessary libraries
+```{r, warning = FALSE}
+library(readxl)
+library(ggplot2)
+library(tidyverse)
+library(dplyr)
+library(scales)
+library(plotly)
+theme_set(theme_minimal())
+```
+
+### Import the data
+```{r}
+df1 <- read.csv("ppg2008.csv", header = TRUE, sep = ",")
+df2 <- read.csv("costcos-geocoded.csv", header = TRUE, sep = ",")
+```
+
+### Heat map using 2008 Top 50 NBA Scorer Data.
+Order the data by points scored and store as bball.
+```{r}
+bball <- df1[order(df1$PTS, decreasing = FALSE),]
+```
+Change  row names to first column and select cols 2-20 subset back to bball.
+```{r}
+row.names(bball) <- bball$Name
+bball <- bball[,2:20]
+```
+Create a matrix for the heat map.
+```{r}
+bball_matrix <- data.matrix(bball)
+```
+Create the heat map.
+```{r}
+library(RColorBrewer)
+bball_heatmap <- heatmap(bball_matrix, Rowv=NA, 
+                         Colv=NA, col = brewer.pal(9, "Blues"), 
+                         scale="column", margins=c(5,10))
+```
+
+
+
+### Spatial Chart using Costco geocoded data.
+Load Maps
+```{r}
+library(maps)
+```
+Create the spatial chart of Costco locations.
+```{r}
+map(database = "state")
+symbols(df2$Longitude, df2$Latitude, bg= "#e2373f", fg="#ffffff",
+        circles=rep(1, length(df2$Longitude)), inches=0.05, add=TRUE)
+```
+
+### Contour Chart using Top 50 NBA Scorer Data.
+Create the plot.
+```{r}
+ggplot(data = df1, aes(x = PTS, y = AST)) + 
+  xlim(15, 35) + ylim(0,15) +
+  theme_bw() +
+  geom_point(alpha = 0.1, col = "red") +
+  geom_density2d(color = "black") +
+  ggtitle("Points vs. Assists for Top 50 NBA Scorers (2008)") + 
+  theme(plot.title = element_text(hjust = 0.5)) +
+  labs(x = "Points Per Game", y = "Assists Per Game")
+
+```
+
