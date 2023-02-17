@@ -1,0 +1,48 @@
+@font-face {
+    font-family: 'manual_7c973e4d98128fc0399a7b0c';
+    src: url(https://cdn.venngage.com/fonts/1599061-7c973e4d98128fc0399a7b0c5def3012.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'manual_cf440f62dc9099b09998d64e';
+    src: url(https://cdn.venngage.com/fonts/1599061-cf440f62dc9099b09998d64ec6c56e18.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'manual_7845806a90d7f3b6bb740a9c';
+    src: url(https://cdn.venngage.com/fonts/1599061-7845806a90d7f3b6bb740a9c18460315.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'manual_145ab127eabebf0117929e7d';
+    src: url(https://cdn.venngage.com/fonts/1599061-145ab127eabebf0117929e7dd9461973.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'manual_d1ee89259575fc256961857b';
+    src: url(https://cdn.venngage.com/fonts/1599061-d1ee89259575fc256961857bfd425974.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'manual_6fd641c6fbaed2ae3c0c5044';
+    src: url(https://cdn.venngage.com/fonts/1599061-6fd641c6fbaed2ae3c0c5044dd56aaa6.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'manual_c7285493eab584f6b2e154fd';
+    src: url(https://cdn.venngage.com/fonts/1599061-c7285493eab584f6b2e154fd961278c9.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'manual_56f80ae9f3f323bb97985e3a';
+    src: url(https://cdn.venngage.com/fonts/10334039-56f80ae9f3f323bb97985e3ad0629d30.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
