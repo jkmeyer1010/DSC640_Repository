@@ -1,0 +1,157 @@
+state,category,score
+United States,reading,501
+Alabama,reading,557
+Alaska,reading,520
+Arizona,reading,516
+Arkansas,reading,572
+California,reading,500
+Colorado,reading,568
+Connecticut,reading,509
+Delaware,reading,495
+District of Columbia,reading,466
+Florida,reading,497
+Georgia,reading,490
+Hawaii,reading,479
+Idaho,reading,541
+Illinois,reading,588
+Indiana,reading,496
+Iowa,reading,610
+Kansas,reading,581
+Kentucky,reading,573
+Louisiana,reading,563
+Maine,reading,468
+Maryland,reading,500
+Massachusetts,reading,514
+Michigan,reading,584
+Minnesota,reading,595
+Mississippi,reading,567
+Missouri,reading,595
+Montana,reading,541
+Nebraska,reading,587
+Nevada,reading,501
+New Hampshire,reading,523
+New Jersey,reading,496
+New Mexico,reading,553
+New York,reading,485
+North Carolina,reading,495
+North Dakota,reading,590
+Ohio,reading,537
+Oklahoma,reading,575
+Oregon,reading,523
+Pennsylvania,reading,493
+Rhode Island,reading,498
+South Carolina,reading,486
+South Dakota,reading,589
+Tennessee,reading,571
+Texas,reading,486
+Utah,reading,559
+Vermont,reading,518
+Virginia,reading,511
+Washington,reading,524
+West Virginia,reading,511
+Wisconsin,reading,594
+Wyoming,reading,567
+United States,math,515
+Alabama,math,552
+Alaska,math,516
+Arizona,math,521
+Arkansas,math,572
+California,math,513
+Colorado,math,575
+Connecticut,math,513
+Delaware,math,498
+District of Columbia,math,451
+Florida,math,498
+Georgia,math,491
+Hawaii,math,502
+Idaho,math,540
+Illinois,math,604
+Indiana,math,507
+Iowa,math,615
+Kansas,math,589
+Kentucky,math,573
+Louisiana,math,558
+Maine,math,467
+Maryland,math,502
+Massachusetts,math,526
+Michigan,math,603
+Minnesota,math,609
+Mississippi,math,554
+Missouri,math,600
+Montana,math,542
+Nebraska,math,594
+Nevada,math,505
+New Hampshire,math,523
+New Jersey,math,513
+New Mexico,math,546
+New York,math,502
+North Carolina,math,511
+North Dakota,math,593
+Ohio,math,546
+Oklahoma,math,571
+Oregon,math,525
+Pennsylvania,math,501
+Rhode Island,math,496
+South Carolina,math,496
+South Dakota,math,600
+Tennessee,math,565
+Texas,math,506
+Utah,math,558
+Vermont,math,518
+Virginia,math,512
+Washington,math,531
+West Virginia,math,501
+Wisconsin,math,608
+Wyoming,math,568
+United States,writing,493
+Alabama,writing,549
+Alaska,writing,492
+Arizona,writing,497
+Arkansas,writing,556
+California,writing,498
+Colorado,writing,555
+Connecticut,writing,512
+Delaware,writing,484
+District of Columbia,writing,461
+Florida,writing,480
+Georgia,writing,479
+Hawaii,writing,469
+Idaho,writing,520
+Illinois,writing,583
+Indiana,writing,480
+Iowa,writing,588
+Kansas,writing,564
+Kentucky,writing,561
+Louisiana,writing,555
+Maine,writing,455
+Maryland,writing,495
+Massachusetts,writing,510
+Michigan,writing,575
+Minnesota,writing,578
+Mississippi,writing,559
+Missouri,writing,584
+Montana,writing,519
+Nebraska,writing,572
+Nevada,writing,479
+New Hampshire,writing,510
+New Jersey,writing,496
+New Mexico,writing,534
+New York,writing,478
+North Carolina,writing,480
+North Dakota,writing,566
+Ohio,writing,523
+Oklahoma,writing,557
+Oregon,writing,499
+Pennsylvania,writing,483
+Rhode Island,writing,494
+South Carolina,writing,470
+South Dakota,writing,569
+Tennessee,writing,565
+Texas,writing,475
+Utah,writing,540
+Vermont,writing,506
+Virginia,writing,498
+Washington,writing,507
+West Virginia,writing,499
+Wisconsin,writing,582
+Wyoming,writing,550

@@ -1,0 +1,124 @@
+---
+title: "DSC640_Exercise_6-2_JakeMeyer"
+course: "DSC 640 Data Presentation & Visualization (DSC640-T302 2231-1)"
+college: "Bellevue University"
+author: "Jake Meyer"
+date: "2023-02-25"
+output: pdf_document
+always_allow_html: yes
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE, 
+                      root.dir = "C:/Users/jkmey/Documents/Github/DSC640_Course_Assignments/DSC640_Repository" )
+```
+
+## Assignment Instructions
+Submit 1 histogram, 1 box plot, 1 bullet chart, and 1 additional chart with R.
+
+### Show Working directory
+```{r, warning = FALSE}
+getwd()
+dir()
+ # setwd("C:/Users/jkmey/Documents/Github/DSC640_Course_Assignments/DSC640_Repository")
+```
+
+### Import the necessary libraries
+```{r, warning = FALSE}
+library(readxl)
+library(ggplot2)
+library(tidyverse)
+library(dplyr)
+library(scales)
+library(plotly)
+theme_set(theme_minimal())
+```
+
+### Import the data
+```{r}
+df1 <- read.csv("education.csv", header = TRUE, sep = ",")
+df2 <- read.csv("education_revised.csv", header = TRUE, sep = ",")
+```
+
+### Histogram.
+Generate a histogram using the education data.
+```{r}
+ggplot(df1, aes(writing)) + geom_histogram(binwidth = 7) +
+  ggtitle('Writing Scores') + labs(x='Writing Score', y = 'Frequency') 
+```
+
+
+### Box Plot.
+Generate a box plot using the education data.
+```{r}
+boxplot(df2$score~df2$category, ylab = 'Score', xlab = 'Subject',
+        main =' US Math, Reading, Writing Scores')
+```
+
+### Bullet Chart.
+Generate a bullet chart using the education data.
+```{r}
+ex_df <- bind_rows(
+  tibble(
+  name = rep("Reading", 2),
+  group = c("Qualitative", "Measure"),
+  color = c("grey", "black"),
+  value = c(600, 536),
+  width = c(0.9, 0.5),
+  target = rep(580, 2),
+  ymin = rep(0.7, 2),
+  ymax = rep(1.3, 2)
+  ),
+  tibble(
+  name = rep("Writing", 2),
+  group = c("Qualitative", "Measure"),
+  color = c("grey", "black"),
+  value = c(600, 523),
+  width = c(0.9, 0.5),
+  target = rep(580, 2),
+  ymin = rep(1.7, 2),
+  ymax = rep(2.3, 2)
+  )
+)
+
+ex_df %>% 
+  ggplot(aes(x = value, y = name, fill = color)) +
+  geom_col(width = c(0.9, 0.5, 0.9, 0.5)) +
+  geom_linerange(
+    aes(x = target, ymin = ymin, ymax = ymax),
+    size = 2, color = "red"
+    ) +
+  coord_cartesian(ylim = c(0.3, 2.7)) +
+  scale_fill_identity() +
+  theme_minimal() +
+  theme(panel.grid.major.y = element_blank()) +
+  labs(x = "Score", y = "Subject", title = "US Scores for Reading and Writing")
+
+```
+
+### Lollipop Chart.
+Generate a lollipop chart with ggplot2.
+```{r}
+# Create the data for the chart.
+data <- data.frame(
+  x=LETTERS[1:26], y = abs(rnorm(26))
+)
+
+# Generate the plot.
+ggplot(data, aes(x=x, y=y)) +
+  geom_segment( aes(x=x, xend=x, y=0, yend=y), color="grey") +
+  geom_point( color="green", size=5) +
+  theme_light() +
+  theme(
+    panel.grid.major.x = element_blank(),
+    panel.border = element_blank(),
+    axis.ticks.x = element_blank()
+  ) +
+  xlab("") +
+  ylab("Value of Y") +
+  ggtitle('26 Random Values - Lollipop Chart')
+  
+
+
+```
